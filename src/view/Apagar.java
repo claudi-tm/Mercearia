@@ -1,6 +1,11 @@
 package view;
+import java.io.File;
+import java.util.Vector;
+
 //
 import ListasLigadas.ListaLigada;
+import controller.ControlaListaLigada;
+import controller.ControlaTabela;
 import model.Pessoa;
 
 /*
@@ -151,7 +156,11 @@ public class Apagar extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         try {
             listaLigada.removePosicao(Integer.parseInt(jTextField3.getText()) - 1);
+            Vector<ListaLigada> vector = new Vector<>();
+            vector.add(listaLigada);
+            ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
             listaLigada.content();
+            
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -189,16 +198,29 @@ public class Apagar extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ListaLigada listaLigada = new ListaLigada();
-                Pessoa pessoa = new Pessoa("nome", "email", "numeroTelefone", "NUIT", 12, "endereco");
-                Pessoa pessoa2 = new Pessoa("P2", "email", "numeroTelefone", "NUIT", 12, "endereco");
+                File file = new File("ListaLigada.bin");
+                Vector<ListaLigada> vector = new Vector<>();
                 try {
-                    listaLigada.adicionaInicio(pessoa);
-                    listaLigada.adicionaInicio(pessoa2);
-                    new Apagar(listaLigada).setVisible(true);
+                    if (file.createNewFile()){
+                        vector.add(listaLigada);
+                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
+                    } else {
+                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
+                        listaLigada = vector.firstElement();
+                        System.out.println(listaLigada.tamanho());
+                    }
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                String dados[][] = new String[vector.size()][7];
+                try {
+                    ControlaTabela.carregarDados(dados, listaLigada);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+                new Tabela(dados);
+                new Apagar(listaLigada).setVisible(true);
             }
         });
     }

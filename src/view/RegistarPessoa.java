@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 
 import ListasLigadas.ListaLigada;
 import ListasLigadas.No;
+import controller.ControlaListaLigada;
+import controller.ControlaTabela;
 import model.Pessoa;
 
 /**
@@ -29,6 +31,8 @@ public class RegistarPessoa extends javax.swing.JFrame {
 
     public RegistarPessoa(ListaLigada listaLigada) {
         this.listaLigada = listaLigada;
+        this.setSize(700, 500);
+        setLocation(-800, 500);
         initComponents();
     }
 
@@ -78,11 +82,11 @@ public class RegistarPessoa extends javax.swing.JFrame {
 
         jLabel6.setText("Endereco");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("NomeTeste");
 
-        jTextField2.setText("jTextField2");
+        jTextField2.setText("13");
 
-        jTextField3.setText("jTextField3");
+        jTextField3.setText("NUITTeste");
 
         jTextField4.setText("jTextField4");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -244,6 +248,7 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                         .addComponent(jButton1)
                                         .addComponent(jButton2))
                                 .addContainerGap(27, Short.MAX_VALUE)));
+                                this.setSize(700, 500);
 
         pack();
     }// </editor-fold>
@@ -255,29 +260,30 @@ public class RegistarPessoa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Insira todos os dados");
         } else {
 
-            Pessoa pessoa = new Pessoa(jTextField1.getText(), jTextField5.getText(), jTextField4.getText(),
-                    jTextField3.getText(), Integer.parseInt(jTextField2.getText()), jTextField6.getText());
+            
+                ListaLigada listaLigada = new ListaLigada();
+        File file = new File("ListaLigada.bin");
+        Vector<ListaLigada> vector = new Vector<>();
+        Pessoa pessoa = new Pessoa(jTextField1.getText(), jTextField5.getText(), jTextField4.getText(),
+            jTextField3.getText(), Integer.parseInt(jTextField2.getText()), jTextField6.getText());
             try {
-                listaLigada.adicionaInicio(pessoa);
-                String dados[][] = new String[1][6];
-                System.out.println(listaLigada.content());
-                for (int x = 0; x < listaLigada.tamanho(); x++) {
-                    No actual = (No) listaLigada.pega(x);
-                    Pessoa pessoaActual = (Pessoa) actual.getElemento();
-                    dados[x][0] = pessoaActual.getNome();
-                    dados[x][1] = pessoaActual.getNome();
-                    dados[x][2] = Integer.toString(pessoaActual.getIdade());
-                    dados[x][3] = pessoaActual.getNumeroTelefone();
-                    dados[x][4] = pessoaActual.getEndereco();
-                    dados[x][5] = pessoaActual.getEmail();
-                }
+                if (file.createNewFile()) {
+                        listaLigada.adicionaInicio(pessoa);
+                        vector.add(listaLigada);
+                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
 
-                new Tabela(dados);
-                //new Tabela();
-            } catch (Exception e) {
+                    } else {
+                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
+                        listaLigada = vector.firstElement();
+                        listaLigada.adicionaInicio(pessoa);
+                        vector.insertElementAt(listaLigada, 0);
+                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
+                    }
+        } catch (Exception e1) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+                e1.printStackTrace();
+        }
+            ControlaTabela.newTabela(vector, listaLigada);
         }
     }
 

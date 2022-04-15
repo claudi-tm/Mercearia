@@ -19,7 +19,7 @@ import javax.swing.WindowConstants;
 import ListasLigadas.ListaLigada;
 import ListasLigadas.No;
 import controller.ControlaListaLigada;
-import controller.ControlaPessoa;
+import controller.ControlaTabela;
 import model.Pessoa;
 
 public class Tabela extends JFrame {
@@ -32,7 +32,7 @@ public class Tabela extends JFrame {
             "Fornecedor: ", "Categoria" };
     private JScrollPane scrollPane;
     String[][] dados;
-    String[] colunas = { "ID: ", "Nome", "Idade", "Numero de Tel", "Endereço", "Email" };
+    String[] colunas = {"Posição", "ID: ", "Nome", "Idade", "Numero de Tel", "Endereço", "Email" };
     private JLabel labelvazio;
 
     public Tabela() {
@@ -42,13 +42,14 @@ public class Tabela extends JFrame {
     public Tabela(String[][] dados) {
         this.dados = dados;
         labelvazio = new JLabel();
-        this.setSize(958, 575);
-        setLocation(150, 150);
+        this.setSize(700, 380);
+        setLocation(800, 500);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(true);
         setLayout(new BorderLayout());
         this.setResizable(false);
         makeLabels();
-        label = new JLabel("Pessoas regitraadas");
+        label = new JLabel("Pessoas regitradas");
         table = new JTable(dados, colunas);
 
         table.setBounds(30, 40, 100, 50);
@@ -124,27 +125,12 @@ public class Tabela extends JFrame {
                 System.out.println(vector.size());
                 listaLigada = vector.firstElement();
             }
-            String[][] dados = new String[listaLigada.tamanho()][6];
-            carregarDados(dados, listaLigada);
-            new Tabela(dados);
-
+            String[][] dados = new String[listaLigada.tamanho()][7];
+            ControlaTabela.carregarDados(dados, listaLigada);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }
-
-    public static void carregarDados(String[][] dados, ListaLigada listaLigada) throws Exception {
-        for (int x = 0; x < dados.length; x++) {
-            No no = (No) listaLigada.pega(x);
-            Pessoa p1 = (Pessoa) no.getElemento();
-            dados[x][0] = p1.getId();
-            dados[x][1] = p1.getNome();
-            dados[x][2] = Integer.toString(p1.getIdade());
-            dados[x][3] = p1.getNumeroTelefone();
-            dados[x][4] = p1.getEndereco();
-            dados[x][5] = p1.getEmail();
-        }
     }
 
 }
