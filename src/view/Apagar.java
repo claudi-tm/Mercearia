@@ -159,7 +159,7 @@ public class Apagar extends javax.swing.JFrame {
             listaLigada.removeCode(jTextField2.getText());
             listaLigada.content();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+            // TODO Auto-generated catch bloc
             e.printStackTrace();
         }
     }
