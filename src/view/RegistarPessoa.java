@@ -259,8 +259,6 @@ public class RegistarPessoa extends javax.swing.JFrame {
                 || jTextField5.getText().trim().equals("") || jTextField6.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Insira todos os dados");
         } else {
-
-            
                 ListaLigada listaLigada = new ListaLigada();
         File file = new File("ListaLigada.bin");
         Vector<ListaLigada> vector = new Vector<>();

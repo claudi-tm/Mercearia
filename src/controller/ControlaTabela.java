@@ -20,20 +20,22 @@ public class ControlaTabela {
             dados[x][5] = p1.getEndereco();
             dados[x][6] = p1.getEmail();
         }
-        new Tabela(dados);
+        
     }
 
-    public static void newTabela(Vector<ListaLigada> vector, ListaLigada listaLigada){
+    public static Tabela newTabela(Vector<ListaLigada> vector, ListaLigada listaLigada){
         try {
             //listaLigada.adicionaInicio(pessoa);
             String dados[][] = new String[vector.size()][7];
             ControlaTabela.carregarDados(dados, listaLigada);
             System.out.println(listaLigada.content());
+            return new Tabela(dados);
             //new Tabela();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return null;
     }
 
 }
