@@ -109,7 +109,6 @@ public class Tabela extends JFrame {
     }
 
     public static void main(String[] args) {
-        // GestorProduto gestorProduto = new GestorProduto();
         File file = new File("ListaLigada.bin");
         Vector<ListaLigada> vector = new Vector<>();
         try {
@@ -125,25 +124,27 @@ public class Tabela extends JFrame {
                 System.out.println(vector.size());
                 listaLigada = vector.firstElement();
             }
-            String dados[][] = new String[listaLigada.tamanho()][6];
-
-            System.out.println(dados.length);
-            for (int x = 0; x < dados.length; x++) {
-                No no = (No) listaLigada.pega(x);
-                Pessoa p1 = (Pessoa) no.getElemento();
-                dados[x][0] = p1.getId();
-                dados[x][1] = p1.getNome();
-                dados[x][2] = Integer.toString(p1.getIdade());
-                dados[x][3] = p1.getNumeroTelefone();
-                dados[x][4] = p1.getEndereco();
-                dados[x][5] = p1.getEmail();
-            }
+            String[][] dados = new String[listaLigada.tamanho()][6];
+            carregarDados(dados, listaLigada);
             new Tabela(dados);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public static void carregarDados(String[][] dados, ListaLigada listaLigada) throws Exception {
+        for (int x = 0; x < dados.length; x++) {
+            No no = (No) listaLigada.pega(x);
+            Pessoa p1 = (Pessoa) no.getElemento();
+            dados[x][0] = p1.getId();
+            dados[x][1] = p1.getNome();
+            dados[x][2] = Integer.toString(p1.getIdade());
+            dados[x][3] = p1.getNumeroTelefone();
+            dados[x][4] = p1.getEndereco();
+            dados[x][5] = p1.getEmail();
+        }
     }
 
 }
