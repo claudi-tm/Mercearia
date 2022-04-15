@@ -1,7 +1,8 @@
 package ListasLigadas;
 
+import java.io.Serializable;
 
-public class No {
+public class No implements Serializable{
     private Object elemento;
     private No proximo;
     public No(Object elemento, No proximo) {

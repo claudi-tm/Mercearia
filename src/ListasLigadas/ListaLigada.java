@@ -1,10 +1,11 @@
 package ListasLigadas;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import model.Pessoa;
 
-public class ListaLigada {
+public class ListaLigada implements Serializable{
     private No primeiro;
     private No ultimo;
     private Integer totalElem;

@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.io.File;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,9 +16,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import ListasLigadas.ListaLigada;
+import ListasLigadas.No;
+import controller.ControlaListaLigada;
+import controller.ControlaPessoa;
 import model.Pessoa;
 
-public class Tabela extends JFrame{
+public class Tabela extends JFrame {
     private JLabel[] labels;
     private JTextField[] arrayField;
     private JPanel[] panels;
@@ -30,7 +36,7 @@ public class Tabela extends JFrame{
     private JLabel labelvazio;
 
     public Tabela() {
-        
+
     }
 
     public Tabela(String[][] dados) {
@@ -44,7 +50,7 @@ public class Tabela extends JFrame{
         makeLabels();
         label = new JLabel("Pessoas regitraadas");
         table = new JTable(dados, colunas);
-        
+
         table.setBounds(30, 40, 100, 50);
         // table.getSelectionModel().addListSelectionListener(this);
         scrollPane = new JScrollPane(table);
@@ -93,7 +99,7 @@ public class Tabela extends JFrame{
         panels[4].add(label);
         panels[0].add(panels[4]);
         panels[0].add(labelvazio);
-        
+
         panels[3].add("Center", scrollPane);
     }
 
@@ -104,23 +110,40 @@ public class Tabela extends JFrame{
 
     public static void main(String[] args) {
         // GestorProduto gestorProduto = new GestorProduto();
-        String dados[][] = new String[1][6];
-        Pessoa p1 = new Pessoa("P1", "cc", "822512163", "131414", 13, "Maputo");
-        System.out.println(dados.length);
-        for (int x = 0; x < dados.length; x++) {
-            dados[x][0] = p1.getId();
-            dados[x][1] = p1.getNome();
-            dados[x][2] = Integer.toString(p1.getIdade());
-            dados[x][3] = p1.getNumeroTelefone();
-            dados[x][4] = p1.getEndereco();
-            dados[x][5] = p1.getEmail();
+        File file = new File("ListaLigada.bin");
+        Vector<ListaLigada> vector = new Vector<>();
+        try {
+            ListaLigada listaLigada = new ListaLigada();
+            if (file.createNewFile()) {
+                Pessoa p = new Pessoa("P1", "cc", "822512163", "131414", 13, "Maputo");
+                listaLigada.adicionaInicio(p);
+                vector.add(listaLigada);
+                ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
+
+            } else {
+                vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
+                System.out.println(vector.size());
+                listaLigada = vector.firstElement();
+            }
+            String dados[][] = new String[listaLigada.tamanho()][6];
+
+            System.out.println(dados.length);
+            for (int x = 0; x < dados.length; x++) {
+                No no = (No) listaLigada.pega(x);
+                Pessoa p1 = (Pessoa) no.getElemento();
+                dados[x][0] = p1.getId();
+                dados[x][1] = p1.getNome();
+                dados[x][2] = Integer.toString(p1.getIdade());
+                dados[x][3] = p1.getNumeroTelefone();
+                dados[x][4] = p1.getEndereco();
+                dados[x][5] = p1.getEmail();
+            }
+            new Tabela(dados);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
-        new Tabela(dados);
-        
-    }
 
     }
 
-   
-
+}
