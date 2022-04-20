@@ -3,9 +3,9 @@ import model.Pessoa;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Pessoa p1 = new Pessoa("P1", "cc", "822512163", "131414", 13, "Maputo");
-        Pessoa p2 = new Pessoa("P2", "cA", "822512163", "131414", 13, "Tete");
-        Pessoa p3 = new Pessoa("P3", "cB", "822512163", "131414", 20, "Nampula");
+        Pessoa p1 = new Pessoa("Claudio", "cc", "822512163", "131414", 10, "Maputo");
+        Pessoa p2 = new Pessoa("Ana", "cA", "822512163", "131414", 30, "Tete");
+        Pessoa p3 = new Pessoa("Ze", "cB", "822512163", "131414", 20, "Nampula");
 
         ListaLigada listaLigada = new ListaLigada();
         listaLigada.adicionaInicio(p1);
@@ -13,10 +13,16 @@ public class App {
         listaLigada.adicionaPosicao(1, p3);
         listaLigada.content();
         System.out.println("-----------------");
-        //listaLigada.removeCode(p3.getId());
-        System.out.println(listaLigada.imprimir("idade", "13"));
-        System.out.println(listaLigada.imprimirTodos());
-        // listaLigada.content();
-
+        // listaLigada.removeCode(p3.getId());
+        //System.out.println(listaLigada.imprimir("idade", "13"));
+        //System.out.println(listaLigada.imprimirTodos());
+        //System.out.println("-------BUSCA----------");
+        // System.out.println(listaLigada.busca("nome", "P1", "idade", "13", true));
+        listaLigada.content();
+        listaLigada.editarPessoa(p1, "Claudio", Integer.toString(p1.getIdade()), p1.getNumeroTelefone(), p1.getEmail(),
+                p1.getEndereco(), p1.getNUIT());
+        listaLigada.content();
+        System.out.println("--------ORDENACAO---------");
+        listaLigada.bubbleSort("nome", listaLigada);
     }
 }

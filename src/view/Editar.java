@@ -22,15 +22,15 @@ import model.Pessoa;
  *
  * @author claudio
  */
-public class RegistarPessoa extends javax.swing.JFrame {
+public class Editar extends javax.swing.JFrame {
 
         /**
-         * Creates new form RegistarPessoa
+         * Creates new form Editar
          */
-        ListaLigada listaLigada;
+        Pessoa pessoa;
 
-        public RegistarPessoa(ListaLigada listaLigada) {
-                this.listaLigada = listaLigada;
+        public Editar(Pessoa pessoa) {
+                this.pessoa = pessoa;
                 this.setSize(700, 500);
                 setLocation(-800, 500);
                 initComponents();
@@ -82,15 +82,24 @@ public class RegistarPessoa extends javax.swing.JFrame {
 
                 jLabel6.setText("Endereco");
 
-                jTextField1.setText("NomeTeste");
+                jTextField1.setText(pessoa.getNome());
 
+                jTextField2.setText(Integer.toString(pessoa.getIdade()));
+
+                jTextField3.setText(pessoa.getNUIT());
+
+                jTextField4.setText(pessoa.getNumeroTelefone());
                 jTextField4.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jTextField4ActionPerformed(evt);
                         }
                 });
 
-                jLabel8.setText("Registo");
+                jTextField5.setText(pessoa.getEmail());
+
+                jTextField6.setText(pessoa.getEndereco());
+
+                jLabel8.setText("Editar");
                 jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
 
                 jButton1.setText("Gravar");
@@ -294,7 +303,22 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                 } else {
                                         vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
                                         listaLigada = vector.firstElement();
-                                        listaLigada.adicionaInicio(pessoa);
+                                        /*
+                                         * jLabel1.setText("Nome:");
+                                         * 
+                                         * jLabel2.setText("Idade:");
+                                         * 
+                                         * jLabel3.setText("NUIT:");
+                                         * 
+                                         * jLabel4.setText("Numero de Tel:");
+                                         * 
+                                         * jLabel5.setText("Email:");
+                                         * 
+                                         * jLabel6.setText("Endereco");
+                                         */
+                                        listaLigada.editarPessoa(pessoa, jTextField1.getText(), jTextField2.getText(),
+                                                        jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jTextField3.getText());
+                                        listaLigada.content();
                                         vector.insertElementAt(listaLigada, 0);
                                         ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
                                 }
@@ -341,20 +365,20 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                 }
                         }
                 } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName()).log(
-                                        java.util.logging.Level.SEVERE, null,
+                        java.util.logging.Logger.getLogger(Editar.class.getName()).log(java.util.logging.Level.SEVERE,
+                                        null,
                                         ex);
                 } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName()).log(
-                                        java.util.logging.Level.SEVERE, null,
+                        java.util.logging.Logger.getLogger(Editar.class.getName()).log(java.util.logging.Level.SEVERE,
+                                        null,
                                         ex);
                 } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName()).log(
-                                        java.util.logging.Level.SEVERE, null,
+                        java.util.logging.Logger.getLogger(Editar.class.getName()).log(java.util.logging.Level.SEVERE,
+                                        null,
                                         ex);
                 } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName()).log(
-                                        java.util.logging.Level.SEVERE, null,
+                        java.util.logging.Logger.getLogger(Editar.class.getName()).log(java.util.logging.Level.SEVERE,
+                                        null,
                                         ex);
                 }
                 // </editor-fold>
@@ -364,8 +388,8 @@ public class RegistarPessoa extends javax.swing.JFrame {
                         public void run() {
                                 File file = new File("Pessoas.bin");
                                 Vector<Pessoa> vector = new Vector<>();
-                                ListaLigada listaLigada = new ListaLigada();
-                                new RegistarPessoa(listaLigada).setVisible(true);
+
+                                // new Editar(listaLigada).setVisible(true);
                         }
                 });
         }

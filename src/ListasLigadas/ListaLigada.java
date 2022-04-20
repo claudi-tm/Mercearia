@@ -1,14 +1,15 @@
 package ListasLigadas;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import model.Pessoa;
 
-public class ListaLigada implements Serializable{
-    private No primeiro;
-    private No ultimo;
-    private Integer totalElem;
+public class ListaLigada implements Serializable {
+    protected No primeiro;
+    protected No ultimo;
+    protected Integer totalElem;
 
     public ListaLigada() {
         this.totalElem = 0;
@@ -38,8 +39,7 @@ public class ListaLigada implements Serializable{
         }
         if (posicao == totalElem) {
             adicionaFim(elemento);
-        }
-        else {
+        } else {
             No anterior = (No) this.pega(posicao - 1);
             No seguinte = anterior.getProximo();
             anterior.setProximo(novo);
@@ -91,17 +91,18 @@ public class ListaLigada implements Serializable{
             this.ultimo = null;
         }
     }
+
     // remove elemento no inicio
     public void removePosicao(int posicao) throws Exception {
-        
+
         if (!posicaoValida(posicao))
             throw new IndexOutOfBoundsException("Posicao invalida");
         if (posicao == 0) {
             removeInicio();
-        } else if (posicao == totalElem){
-                removeFim();
-    
-        }else {
+        } else if (posicao == totalElem) {
+            removeFim();
+
+        } else {
             No anterior = (No) this.pega(posicao - 1);
             No actual = (No) pega(posicao);
             No seguinte = actual.getProximo();
@@ -150,14 +151,14 @@ public class ListaLigada implements Serializable{
     }
 
     public String content() throws Exception {
-        String valor;
+        String valor = "";
         No no;
         for (int x = 0; x < totalElem; x++) {
             no = (No) pega(x);
             no.getElemento();
             System.out.println(no.getElemento());
         }
-        return null;
+        return valor;
     }
 
     public Vector<Pessoa> imprimir(String criterio, String valor) {
@@ -169,22 +170,24 @@ public class ListaLigada implements Serializable{
             pessoa = (Pessoa) no.getElemento();
             if (getCriterio(criterio, pessoa).equals(valor)) {
                 vector.add(pessoa);
-            } 
+            }
             no = no.getProximo();
         }
         return vector;
     }
 
-    public Vector<Pessoa> imprimirTodos() {
+    public String imprimirTodos() {
         No no = primeiro;
         Pessoa pessoa;
+        String todos = "";
         Vector<Pessoa> vector = new Vector<>();
         for (int i = 0; i < totalElem; i++) {
             pessoa = (Pessoa) no.getElemento();
             vector.add(pessoa);
             no = no.getProximo();
+            todos += "\n " + pessoa.toString();
         }
-        return vector;
+        return todos;
     }
 
     public String getCriterio(String criterio, Pessoa obj) {
@@ -198,9 +201,135 @@ public class ListaLigada implements Serializable{
                 return pessoa.getEmail();
             case "numero":
                 return pessoa.getNumeroTelefone();
+            case "id":
+                return pessoa.getId();
             default:
                 return "";
         }
+    }
+
+    public ArrayList<Pessoa> busca(String criterio1, String valor1, String criterio2, String valor2,
+            boolean interseccao) throws Exception {
+        ArrayList<Pessoa> arrayList = new ArrayList<>();
+
+        for (int x = 0; x < totalElem; x++) {
+            No no = (No) pega(x);
+            Pessoa pessoa = (Pessoa) no.getElemento();
+            if (interseccao) {
+                if (getCriterio(criterio1, pessoa).equals(valor1) && getCriterio(criterio2, pessoa).equals(valor2)) {
+                    arrayList.add(pessoa);
+                }
+            } else {
+                if (getCriterio(criterio1, pessoa).equals(valor1) || getCriterio(criterio2, pessoa).equals(valor2)) {
+                    arrayList.add(pessoa);
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public ArrayList<Pessoa> buscaImpressao(String criterio1, String valor1) throws Exception {
+        ArrayList<Pessoa> arrayList = new ArrayList<>();
+
+        for (int x = 0; x < totalElem; x++) {
+            No no = (No) pega(x);
+            Pessoa pessoa = (Pessoa) no.getElemento();
+            if (getCriterio(criterio1, pessoa).contains(valor1)) {
+                arrayList.add(pessoa);
+            }
+        }
+        return arrayList;
+    }
+
+    public Pessoa buscaPrimeiraOcorrencia(String criterio1, String valor1, String criterio2, String valor2,
+            boolean interseccao) throws Exception {
+        ArrayList<Pessoa> arrayList = new ArrayList<>();
+
+        for (int x = 0; x < totalElem; x++) {
+            No no = (No) pega(x);
+            Pessoa pessoa = (Pessoa) no.getElemento();
+            if (interseccao) {
+                if (getCriterio(criterio1, pessoa).equals(valor1) && getCriterio(criterio2, pessoa).equals(valor2)) {
+                    return pessoa;
+                }
+            } 
+            }
+        return null;
+        }
+        
+    
+
+    public void bubbleSort(String criterio, ListaLigada listaLigada) throws Exception {
+        No atual, anterior, proximo;
+
+        Pessoa p1, p2;
+        for (int i = 0; i < totalElem - 1; i++) {
+            for (int j = 0; j < totalElem - i - 1; j++) {
+
+                atual = (No) pega(j);
+                proximo = (No) atual.getProximo();
+                p1 = (Pessoa) atual.getElemento();
+                p2 = (Pessoa) proximo.getElemento();
+
+                if (biggerThan(getCriterio(criterio, p1), getCriterio(criterio, p2))) {
+                    if (atual != primeiro) {
+                        anterior = (No) pega(j - 1);
+                        anterior.setProximo(proximo);
+                    } else {
+                        primeiro = proximo;
+                    }
+                    if (proximo.getProximo() == null) {
+                        atual.setProximo(null);
+                    } else {
+                        atual.setProximo(proximo.getProximo());
+                    }
+                    proximo.setProximo(atual);
+                    //System.out.println("---------------------------" + atual);
+                   
+                }
+
+            }
+        }
+        System.out.println(imprimirTodos().toString());
+        System.out.println("==============================");
+        content();
+    }
+
+    public boolean biggerThan(String firstValue, String secondValue) {
+        int compare = firstValue.compareTo(secondValue);
+        if (compare > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void editarPessoa(Pessoa p, String nome, String idade, String numeroTelefone, String email,
+            String endereco, String nuit) throws Exception {
+        if (!nome.trim().equals(p.getNome())) {
+            p.setNome(nome);
+        }
+        if (!idade.trim().equals(Integer.toString(p.getIdade()))) {
+            p.setIdade(Integer.parseInt(idade));
+        }
+        if (!numeroTelefone.trim().equals(p.getNumeroTelefone())) {
+            p.setNumeroTelefone(numeroTelefone);
+        }
+        if (!email.trim().equals(p.getEmail())) {
+            p.setEmail(email);
+        }
+        if (!endereco.trim().equals(p.getEndereco())) {
+            p.setEndereco(endereco);
+        }
+        if (!nuit.trim().equals(p.getNUIT())) {
+            p.setNuit(nuit);
+        }
+
+        for (int x = 0; x < totalElem; x++){
+            No no = (No) pega(x);
+            Pessoa pessoa = (Pessoa) no.getElemento();
+            if (pessoa.getId().equals(p.getId())) no.setElemento(p);
+        }
+        
     }
 
     // devolve o numero de elementos da listapublic void adicionaInicio(Object

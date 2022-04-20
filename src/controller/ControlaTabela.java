@@ -20,7 +20,7 @@ public class ControlaTabela {
             dados[x][5] = p1.getEndereco();
             dados[x][6] = p1.getEmail();
         }
-        
+        System.out.println(listaLigada.content());
     }
 
     public static Tabela newTabela(Vector<ListaLigada> vector, ListaLigada listaLigada){

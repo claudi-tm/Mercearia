@@ -85,4 +85,7 @@ public class Pessoa implements Serializable{
                 + "]";
     }
 
+    public void setNuit(String nuit2) {
+    }
+
 }
