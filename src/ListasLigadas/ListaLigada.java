@@ -219,11 +219,11 @@ public class ListaLigada implements Serializable {
             No no = (No) pega(x);
             Pessoa pessoa = (Pessoa) no.getElemento();
             if (interseccao) {
-                if (getCriterio(criterio1, pessoa).equalsIgnoreCase(valor1) && getCriterio(criterio2, pessoa).equalsIgnoreCase(valor2)) {
+                if (getCriterio(criterio1, pessoa).contains(valor1) && getCriterio(criterio2, pessoa).contains(valor2)) {
                     arrayList.add(pessoa);
                 }
             } else {
-                if (getCriterio(criterio1, pessoa).equalsIgnoreCase(valor1) || getCriterio(criterio2, pessoa).equalsIgnoreCase(valor2)) {
+                if (getCriterio(criterio1, pessoa).contains(valor1) || getCriterio(criterio2, pessoa).contains(valor2)) {
                     arrayList.add(pessoa);
                 }
             }

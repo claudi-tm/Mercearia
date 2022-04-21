@@ -26,7 +26,7 @@ public class ControlaTabela {
     public static Tabela newTabela(Vector<ListaLigada> vector, ListaLigada listaLigada){
         try {
             //listaLigada.adicionaInicio(pessoa);
-            String dados[][] = new String[vector.size()][7];
+            String dados[][] = new String[listaLigada.tamanho()][7];
             ControlaTabela.carregarDados(dados, listaLigada);
             System.out.println(listaLigada.content());
             return new Tabela(dados);

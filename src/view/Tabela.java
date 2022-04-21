@@ -127,7 +127,7 @@ public class Tabela extends JFrame {
             }
             String[][] dados = new String[listaLigada.tamanho()][7];
             ControlaTabela.carregarDados(dados, listaLigada);
-            new Tabela(dados);
+            ControlaTabela.newTabela(vector, listaLigada);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,5 +1,8 @@
 package view;
 
+import java.io.File;
+import java.util.Vector;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,6 +11,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 import ListasLigadas.ListaLigada;
+import controller.ControlaListaLigada;
 import model.Pessoa;
 
 /**
@@ -247,19 +251,22 @@ public class Busca extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Pessoa p1 = new Pessoa("P1", "cc", "822512163", "131414", 13, "Maputo");
-        Pessoa p2 = new Pessoa("P2", "cA", "822512163", "131414", 13, "Tete");
-        Pessoa p3 = new Pessoa("P3", "cB", "822512163", "131414", 20, "Nampula");
-
-        ListaLigada listaLigada = new ListaLigada();
-        try {
-            listaLigada.adicionaInicio(p1);
-            listaLigada.adicionaFim(p2);
-            listaLigada.adicionaPosicao(1, p3);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+                ListaLigada listaLigada = new ListaLigada();
+                File file = new File("ListaLigada.bin");
+                Vector<ListaLigada> vector = new Vector<>();
+                try {
+                    if (file.createNewFile()) {
+                        vector.add(listaLigada);
+                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
+                    } else {
+                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
+                        listaLigada = vector.firstElement();
+                        System.out.println(listaLigada.tamanho());
+                    }
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+                String dados[][] = new String[vector.size()][7];
                 
                 new Busca(listaLigada).setVisible(true);
             }

@@ -45,7 +45,7 @@ public class Apagar extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
+        setLocation(-800, 500);
         jPanel2 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
@@ -57,22 +57,18 @@ public class Apagar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField2.setText("jTextField2");
-
-        jButton2.setText("jButton2");
+        jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jTextField3.setText("jTextField3");
-
         jLabel1.setText("Posicao:");
 
         jLabel2.setText("Codigo");
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Buscar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -157,9 +153,14 @@ public class Apagar extends javax.swing.JFrame {
             // System.out.println(jTextField2.getText());
             System.out.println(listaLigada.tamanho());
             listaLigada.removeCode(jTextField2.getText());
+            Vector<ListaLigada> vector = new Vector<>();
+            vector.add(listaLigada);
+            ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
             listaLigada.content();
+            tabela.dispose();
+            ControlaTabela.newTabela(vector, listaLigada);
         } catch (Exception e) {
-            // TODO Auto-generated catch bloc
+
             e.printStackTrace();
         }
     }
