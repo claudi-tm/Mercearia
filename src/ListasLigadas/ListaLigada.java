@@ -179,15 +179,16 @@ public class ListaLigada implements Serializable {
     public String imprimirTodos() {
         No no = primeiro;
         Pessoa pessoa;
-        String todos = "";
+        StringBuilder toPrint = new StringBuilder();
         Vector<Pessoa> vector = new Vector<>();
         for (int i = 0; i < totalElem; i++) {
             pessoa = (Pessoa) no.getElemento();
             vector.add(pessoa);
             no = no.getProximo();
-            todos += "\n " + pessoa.toString();
+            toPrint.append("\n" + pessoa.toString());
+            if (i != totalElem - 1) toPrint.append("\n====================");
         }
-        return todos;
+        return toPrint.toString();
     }
 
     public String getCriterio(String criterio, Pessoa obj) {
@@ -203,6 +204,8 @@ public class ListaLigada implements Serializable {
                 return pessoa.getNumeroTelefone();
             case "id":
                 return pessoa.getId();
+            case "endereco":
+                return pessoa.getEndereco();
             default:
                 return "";
         }
@@ -216,11 +219,11 @@ public class ListaLigada implements Serializable {
             No no = (No) pega(x);
             Pessoa pessoa = (Pessoa) no.getElemento();
             if (interseccao) {
-                if (getCriterio(criterio1, pessoa).equals(valor1) && getCriterio(criterio2, pessoa).equals(valor2)) {
+                if (getCriterio(criterio1, pessoa).equalsIgnoreCase(valor1) && getCriterio(criterio2, pessoa).equalsIgnoreCase(valor2)) {
                     arrayList.add(pessoa);
                 }
             } else {
-                if (getCriterio(criterio1, pessoa).equals(valor1) || getCriterio(criterio2, pessoa).equals(valor2)) {
+                if (getCriterio(criterio1, pessoa).equalsIgnoreCase(valor1) || getCriterio(criterio2, pessoa).equalsIgnoreCase(valor2)) {
                     arrayList.add(pessoa);
                 }
             }
@@ -228,17 +231,18 @@ public class ListaLigada implements Serializable {
         return arrayList;
     }
 
-    public ArrayList<Pessoa> buscaImpressao(String criterio1, String valor1) throws Exception {
+    public String buscaImpressao(String criterio1, String valor1) throws Exception {
         ArrayList<Pessoa> arrayList = new ArrayList<>();
-
+        StringBuilder toPress = new StringBuilder();
         for (int x = 0; x < totalElem; x++) {
             No no = (No) pega(x);
             Pessoa pessoa = (Pessoa) no.getElemento();
             if (getCriterio(criterio1, pessoa).contains(valor1)) {
-                arrayList.add(pessoa);
+                toPress.append("\n" + pessoa.toString());
+                if (x != totalElem) toPress.append("\n================");
             }
         }
-        return arrayList;
+        return toPress.toString();
     }
 
     public Pessoa buscaPrimeiraOcorrencia(String criterio1, String valor1, String criterio2, String valor2,
@@ -259,7 +263,7 @@ public class ListaLigada implements Serializable {
         
     
 
-    public void bubbleSort(String criterio, ListaLigada listaLigada) throws Exception {
+    public String bubbleSort(String criterio, ListaLigada listaLigada) throws Exception {
         No atual, anterior, proximo;
 
         Pessoa p1, p2;
@@ -290,9 +294,8 @@ public class ListaLigada implements Serializable {
 
             }
         }
-        System.out.println(imprimirTodos().toString());
-        System.out.println("==============================");
         content();
+        return imprimirTodos();
     }
 
     public boolean biggerThan(String firstValue, String secondValue) {

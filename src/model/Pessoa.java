@@ -21,11 +21,11 @@ public class Pessoa implements Serializable{
 
     public Pessoa(String nome, String email, String numeroTelefone, String NUIT, int idade, String endereco) {
         this.id = UUID.randomUUID().toString();
-        this.nome = nome;
-        this.email = email;
-        this.NUIT = NUIT;
+        this.nome = nome.toLowerCase();
+        this.email = email.toLowerCase();
+        this.NUIT = NUIT.toLowerCase();
         this.idade = idade;
-        this.endereco = endereco;
+        this.endereco = endereco.toLowerCase();
         this.numeroTelefone = numeroTelefone;
     }
 
@@ -81,8 +81,8 @@ public class Pessoa implements Serializable{
 
     @Override
     public String toString() {
-        return "Pessoa [endereco=" + endereco + ", id=" + id + ", nome=" + nome + ", numeroTelefone=" + numeroTelefone
-                + "]";
+        return "ID: " + id  + "\n" + "Nome: " + nome + "\n" + "Idade: " + idade + "\n" + "Numero de Tel: " + numeroTelefone + "\n" + "Endereço: " + endereco + "\n" + "Email: " + email;  
+        
     }
 
     public void setNuit(String nuit2) {
