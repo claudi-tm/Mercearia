@@ -304,9 +304,14 @@ public class RegistarPessoa extends javax.swing.JFrame {
                         }
                         ControlaTabela.newTabela(vector, listaLigada);
                 }
+                limpar();
         }
 
         private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+                limpar();
+        }
+
+        private void limpar() {
                 jTextField1.setText("");
                 jTextField2.setText("");
                 jTextField3.setText("");

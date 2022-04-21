@@ -124,11 +124,13 @@ public class Imprimir extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         JOptionPane.showMessageDialog(this, listaLigada.imprimirTodos());
         System.out.println(listaLigada.imprimirTodos());
+        jTextField1.setText("");
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         try {
             JOptionPane.showMessageDialog(this, listaLigada.bubbleSort(jComboBox1.getSelectedItem().toString(), listaLigada));
+            jTextField1.setText("");
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -139,6 +141,7 @@ public class Imprimir extends javax.swing.JFrame {
         try {
             JOptionPane.showMessageDialog(this,
                     listaLigada.buscaImpressao(jComboBox1.getSelectedItem().toString(), jTextField1.getText().toLowerCase()));
+            jTextField1.setText("");
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
