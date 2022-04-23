@@ -245,10 +245,14 @@ public class Busca extends javax.swing.JFrame {
         if (buttonGroup.getSelection() == null) {
             JOptionPane.showMessageDialog(this, "Selecione uma das opcoes");
         } else {
-            new Editar(
+                if (jComboBox2.getSelectedItem().toString().equals("id") || jComboBox3.getSelectedItem().toString().equals("id")){
+                        new Editar(
                     listaLigada.buscaPrimeiraOcorrencia(jComboBox2.getSelectedItem().toString(), jTextField2.getText(),
                             jComboBox3.getSelectedItem().toString(), jTextField3.getText(), jRadioButton2.isSelected()))
                     .setVisible(true);
+                } else {
+                        JOptionPane.showMessageDialog(this, "Para editar os dados selecione um dos atributos como ID.");
+                }
         }
     }
 

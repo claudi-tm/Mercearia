@@ -49,7 +49,7 @@ public class Tabela extends JFrame {
         setLayout(new BorderLayout());
         this.setResizable(false);
         makeLabels();
-        label = new JLabel("Pessoas regitradas");
+        label = new JLabel("Lista de pessoas");
         table = new JTable(dados, colunas);
 
         table.setBounds(30, 40, 100, 50);
@@ -80,7 +80,7 @@ public class Tabela extends JFrame {
 
     public void configComponents() {
         label.setFont(new Font("Arial", Font.BOLD, 30));
-        label.setForeground(Color.orange);
+        label.setForeground(Color.black);
         arrayField[arrayField.length - 1].setColumns(20);
         panels[0].setLayout(new GridLayout(2, 1));
         panels[1].setLayout(new GridLayout(5, 2));// 5 ou 9

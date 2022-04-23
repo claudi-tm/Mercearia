@@ -17,7 +17,8 @@ public class Pessoa implements Serializable {
     protected final String nuit;
 
     public Pessoa(String nome, String email, String numeroTelefone, String nuit, int idade, String endereco, String sexo) {
-        this.id = UUID.randomUUID().toString();
+        String uuid = UUID.randomUUID().toString(); 
+        this.id = uuid.substring(0, uuid.length()/6);
         this.nome = nome.toLowerCase();
         this.email = email.toLowerCase();
         this.nuit = nuit.toLowerCase();
