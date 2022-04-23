@@ -19,7 +19,7 @@ public class App {
         //System.out.println("-------BUSCA----------");
         // System.out.println(listaLigada.busca("nome", "P1", "idade", "13", true));
         listaLigada.content();
-        listaLigada.editarPessoa(p1, "Claudio", Integer.toString(p1.getIdade()), p1.getNumeroTelefone(), p1.getEmail(),
+        listaLigada.editarPessoa(p1, "Claud", Integer.toString(p1.getIdade()), p1.getNumeroTelefone(), p1.getEmail(),
                 p1.getEndereco(), p1.getNUIT());
         listaLigada.content();
         System.out.println("--------ORDENACAO---------");

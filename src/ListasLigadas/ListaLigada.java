@@ -211,9 +211,10 @@ public class ListaLigada implements Serializable {
         }
     }
 
-    public ArrayList<Pessoa> busca(String criterio1, String valor1, String criterio2, String valor2,
+    public ListaLigada busca(String criterio1, String valor1, String criterio2, String valor2,
             boolean interseccao) throws Exception {
         ArrayList<Pessoa> arrayList = new ArrayList<>();
+        ListaLigada aux = new ListaLigada();
 
         for (int x = 0; x < totalElem; x++) {
             No no = (No) pega(x);
@@ -221,14 +222,16 @@ public class ListaLigada implements Serializable {
             if (interseccao) {
                 if (getCriterio(criterio1, pessoa).contains(valor1) && getCriterio(criterio2, pessoa).contains(valor2)) {
                     arrayList.add(pessoa);
+                    aux.adicionaInicio(pessoa)  ;
                 }
             } else {
                 if (getCriterio(criterio1, pessoa).contains(valor1) || getCriterio(criterio2, pessoa).contains(valor2)) {
                     arrayList.add(pessoa);
+                    aux.adicionaInicio(pessoa);
                 }
             }
         }
-        return arrayList;
+        return aux;
     }
 
     public String buscaImpressao(String criterio1, String valor1) throws Exception {

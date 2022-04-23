@@ -8,9 +8,6 @@ public class Pessoa implements Serializable{
     private final String id;
     private String nome;
     private String endereco;
-
-   
-
     private String numeroTelefone;
     protected String email;
     protected int idade;

@@ -158,7 +158,7 @@ public class Apagar extends javax.swing.JFrame {
             ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
             listaLigada.content();
             tabela.dispose();
-            ControlaTabela.newTabela(vector, listaLigada);
+            ControlaTabela.newTabela(listaLigada);
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -173,7 +173,7 @@ public class Apagar extends javax.swing.JFrame {
             ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
             listaLigada.content();
             tabela.dispose();
-            ControlaTabela.newTabela(vector, listaLigada);
+            ControlaTabela.newTabela(listaLigada);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -232,7 +232,7 @@ public class Apagar extends javax.swing.JFrame {
                 String dados[][] = new String[vector.size()][7];
                 try {
                     // ControlaTabela.carregarDados(dados, listaLigada);
-                    new Apagar(listaLigada, dados, ControlaTabela.newTabela(vector, listaLigada)).setVisible(true);
+                    new Apagar(listaLigada, dados, ControlaTabela.newTabela(listaLigada)).setVisible(true);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

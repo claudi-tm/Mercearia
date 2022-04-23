@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import ListasLigadas.ListaLigada;
@@ -23,7 +24,7 @@ public class ControlaTabela {
         System.out.println(listaLigada.content());
     }
 
-    public static Tabela newTabela(Vector<ListaLigada> vector, ListaLigada listaLigada){
+    public static Tabela newTabela(ListaLigada listaLigada){
         try {
             //listaLigada.adicionaInicio(pessoa);
             String dados[][] = new String[listaLigada.tamanho()][7];
@@ -37,5 +38,20 @@ public class ControlaTabela {
         }
         return null;
     }
+
+    /*public static Tabela newTabela2(ArrayList<Pessoa> arrayList){
+        try {
+            //listaLigada.adicionaInicio(pessoa);
+            String dados[][] = new String[arrayList.size()][7];
+            ControlaTabela.carregarDados(dados, listaLigada);
+            System.out.println(listaLigada.content());
+            return new Tabela(dados);
+            //new Tabela();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }*/
 
 }

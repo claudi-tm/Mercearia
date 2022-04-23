@@ -302,7 +302,7 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                 // TODO Auto-generated catch block
                                 e1.printStackTrace();
                         }
-                        ControlaTabela.newTabela(vector, listaLigada);
+                        ControlaTabela.newTabela(listaLigada);
                 }
                 limpar();
         }
