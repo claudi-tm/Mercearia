@@ -65,7 +65,7 @@ public class Editar extends javax.swing.JFrame {
 
                 jTextField1.setToolTipText("Nome");
                 jTextField2.setToolTipText("Idade");
-                jTextField3.setToolTipText("NUIT");
+                jTextField3.setToolTipText("nuit");
                 jTextField4.setToolTipText("Numero de Telefone");
                 jTextField5.setToolTipText("Email");
                 jTextField6.setToolTipText("Endereco");
@@ -74,7 +74,7 @@ public class Editar extends javax.swing.JFrame {
 
                 jLabel2.setText("Idade:");
 
-                jLabel3.setText("NUIT:");
+                jLabel3.setText("nuit:");
 
                 jLabel4.setText("Numero de Tel:");
 
@@ -86,7 +86,7 @@ public class Editar extends javax.swing.JFrame {
 
                 jTextField2.setText(Integer.toString(pessoa.getIdade()));
 
-                jTextField3.setText(pessoa.getNUIT());
+                jTextField3.setText(pessoa.getnuit());
 
                 jTextField4.setText(pessoa.getNumeroTelefone());
                 jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -293,29 +293,30 @@ public class Editar extends javax.swing.JFrame {
                         Vector<ListaLigada> vector = new Vector<>();
                         Pessoa pessoa = this.pessoa;
                         try {
-                                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
-                                        listaLigada = vector.firstElement();
-                                        /*
-                                         * jLabel1.setText("Nome:");
-                                         * 
-                                         * jLabel2.setText("Idade:");
-                                         * 
-                                         * jLabel3.setText("NUIT:");
-                                         * 
-                                         * jLabel4.setText("Numero de Tel:");
-                                         * 
-                                         * jLabel5.setText("Email:");
-                                         * 
-                                         * jLabel6.setText("Endereco");
-                                         */
-                                        listaLigada.editarPessoa(pessoa, jTextField1.getText(), jTextField2.getText(),
-                                                        jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jTextField3.getText());
-                                        System.out.println("-----------AFTER EDITING------------");
-                                        listaLigada.content();
-                                        vector.insertElementAt(listaLigada, 0);
-                                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
-                                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
-                                        listaLigada = vector.firstElement();
+                                vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
+                                listaLigada = vector.firstElement();
+                                /*
+                                 * jLabel1.setText("Nome:");
+                                 * 
+                                 * jLabel2.setText("Idade:");
+                                 * 
+                                 * jLabel3.setText("nuit:");
+                                 * 
+                                 * jLabel4.setText("Numero de Tel:");
+                                 * 
+                                 * jLabel5.setText("Email:");
+                                 * 
+                                 * jLabel6.setText("Endereco");
+                                 */
+                                listaLigada.editarPessoa(pessoa, jTextField1.getText(), jTextField2.getText(),
+                                                jTextField4.getText(), jTextField5.getText(), jTextField6.getText(),
+                                                jTextField3.getText());
+                                System.out.println("-----------AFTER EDITING------------");
+                                listaLigada.content();
+                                vector.insertElementAt(listaLigada, 0);
+                                ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
+                                vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
+                                listaLigada = vector.firstElement();
                         } catch (Exception e1) {
                                 // TODO Auto-generated catch block
                                 e1.printStackTrace();

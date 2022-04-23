@@ -2,31 +2,40 @@ package model;
 
 import java.io.Serializable;
 import java.util.UUID;
-import java.util.Vector;
 
-public class Pessoa implements Serializable{
+public class Pessoa implements Serializable {
     private final String id;
     private String nome;
     private String endereco;
     private String numeroTelefone;
     protected String email;
     protected int idade;
+    private String sexo;
 
-   
+    
 
-	protected final String NUIT;
+    protected final String nuit;
 
-    public Pessoa(String nome, String email, String numeroTelefone, String NUIT, int idade, String endereco) {
+    public Pessoa(String nome, String email, String numeroTelefone, String nuit, int idade, String endereco, String sexo) {
         this.id = UUID.randomUUID().toString();
         this.nome = nome.toLowerCase();
         this.email = email.toLowerCase();
-        this.NUIT = NUIT.toLowerCase();
+        this.nuit = nuit.toLowerCase();
         this.idade = idade;
         this.endereco = endereco.toLowerCase();
         this.numeroTelefone = numeroTelefone;
+        this.sexo = sexo;
     }
 
-     public String getEndereco() {
+    public String getSexo() {
+        return this.sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getEndereco() {
         return this.endereco;
     }
 
@@ -50,9 +59,9 @@ public class Pessoa implements Serializable{
         this.email = email;
     }
 
-    public String getNUIT() {
-		return NUIT;
-	}
+    public String getnuit() {
+        return nuit;
+    }
 
     public String getNumeroTelefone() {
         return numeroTelefone;
@@ -74,15 +83,14 @@ public class Pessoa implements Serializable{
         return this.id;
     }
 
-    
-
     @Override
     public String toString() {
-        return "ID: " + id  + "\n" + "Nome: " + nome + "\n" + "Idade: " + idade + "\n" + "Numero de Tel: " + numeroTelefone + "\n" + "Endereço: " + endereco + "\n" + "Email: " + email;  
-        
+        return "ID: " + id + "\n" + "Nome: " + nome + "\n" + "Idade: " + idade + "\n" + "Numero de Tel: "
+                + numeroTelefone + "\n" + "Endereço: " + endereco + "\n" + "Email: " + email;
+
     }
 
-    public void setNuit(String nuit2) {
+    public void setnuit(String nuit2) {
     }
 
 }

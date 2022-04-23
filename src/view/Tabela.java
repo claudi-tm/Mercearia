@@ -32,7 +32,7 @@ public class Tabela extends JFrame {
             "Fornecedor: ", "Categoria" };
     private JScrollPane scrollPane;
     String[][] dados;
-    String[] colunas = {"Posição", "ID: ", "Nome", "Idade", "Numero de Tel", "Endereço", "Email" };
+    String[] colunas = { "Posição", "ID: ", "Nome", "Idade", "Numero de Tel", "Endereço", "Email", "Sexo" };
     private JLabel labelvazio;
 
     public Tabela() {
@@ -44,7 +44,7 @@ public class Tabela extends JFrame {
         labelvazio = new JLabel();
         this.setSize(700, 380);
         setLocation(800, 500);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(true);
         setLayout(new BorderLayout());
         this.setResizable(false);
@@ -115,8 +115,6 @@ public class Tabela extends JFrame {
         try {
             ListaLigada listaLigada = new ListaLigada();
             if (file.createNewFile()) {
-                Pessoa p = new Pessoa("P1", "cc", "822512163", "131414", 13, "Maputo");
-                listaLigada.adicionaInicio(p);
                 vector.add(listaLigada);
                 ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
 
@@ -125,8 +123,8 @@ public class Tabela extends JFrame {
                 System.out.println(vector.size());
                 listaLigada = vector.firstElement();
             }
-            String[][] dados = new String[listaLigada.tamanho()][7];
-            //ControlaTabela.carregarDados(dados, listaLigada);
+            String[][] dados = new String[listaLigada.tamanho()][8];
+            // ControlaTabela.carregarDados(dados, listaLigada);
             ControlaTabela.newTabela(listaLigada);
         } catch (Exception e) {
             e.printStackTrace();

@@ -20,18 +20,19 @@ public class ControlaTabela {
             dados[x][4] = p1.getNumeroTelefone();
             dados[x][5] = p1.getEndereco();
             dados[x][6] = p1.getEmail();
+            dados[x][7] = p1.getSexo();
         }
         System.out.println(listaLigada.content());
     }
 
-    public static Tabela newTabela(ListaLigada listaLigada){
+    public static Tabela newTabela(ListaLigada listaLigada) {
         try {
-            //listaLigada.adicionaInicio(pessoa);
-            String dados[][] = new String[listaLigada.tamanho()][7];
+            // listaLigada.adicionaInicio(pessoa);
+            String dados[][] = new String[listaLigada.tamanho()][8];
             ControlaTabela.carregarDados(dados, listaLigada);
             System.out.println(listaLigada.content());
             return new Tabela(dados);
-            //new Tabela();
+            // new Tabela();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -39,19 +40,21 @@ public class ControlaTabela {
         return null;
     }
 
-    /*public static Tabela newTabela2(ArrayList<Pessoa> arrayList){
-        try {
-            //listaLigada.adicionaInicio(pessoa);
-            String dados[][] = new String[arrayList.size()][7];
-            ControlaTabela.carregarDados(dados, listaLigada);
-            System.out.println(listaLigada.content());
-            return new Tabela(dados);
-            //new Tabela();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
-    }*/
+    /*
+     * public static Tabela newTabela2(ArrayList<Pessoa> arrayList){
+     * try {
+     * //listaLigada.adicionaInicio(pessoa);
+     * String dados[][] = new String[arrayList.size()][8];
+     * ControlaTabela.carregarDados(dados, listaLigada);
+     * System.out.println(listaLigada.content());
+     * return new Tabela(dados);
+     * //new Tabela();
+     * } catch (Exception e) {
+     * // TODO Auto-generated catch block
+     * e.printStackTrace();
+     * }
+     * return null;
+     * }
+     */
 
 }

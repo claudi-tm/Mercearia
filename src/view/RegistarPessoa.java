@@ -3,6 +3,7 @@ package view;
 import java.io.File;
 import java.util.Vector;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 /*
@@ -13,24 +14,24 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import ListasLigadas.ListaLigada;
-import ListasLigadas.No;
 import controller.ControlaListaLigada;
 import controller.ControlaTabela;
 import model.Pessoa;
+import utils.PhoneNumberValidator;
 
 /**
  *
  * @author claudio
  */
 public class RegistarPessoa extends javax.swing.JFrame {
+        private ListaLigada listaLigada;
 
         /**
          * Creates new form RegistarPessoa
          */
-        ListaLigada listaLigada;
-
-        public RegistarPessoa(ListaLigada listaLigada) {
-                this.listaLigada = listaLigada;
+        public RegistarPessoa() {
+                this.listaLigada = ControlaListaLigada.carregarLista();
+                setTitle("Registar");
                 this.setSize(700, 500);
                 setLocation(-800, 500);
                 initComponents();
@@ -44,7 +45,9 @@ public class RegistarPessoa extends javax.swing.JFrame {
         @SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated Code">
         private void initComponents() {
-
+                buttonGroup = new ButtonGroup();
+                jPanel1 = new javax.swing.JPanel();
+                buttonGroup1 = new javax.swing.ButtonGroup();
                 jLabel1 = new javax.swing.JLabel();
                 jLabel2 = new javax.swing.JLabel();
                 jLabel3 = new javax.swing.JLabel();
@@ -60,15 +63,23 @@ public class RegistarPessoa extends javax.swing.JFrame {
                 jLabel8 = new javax.swing.JLabel();
                 jButton1 = new javax.swing.JButton();
                 jButton2 = new javax.swing.JButton();
+                jRadioButton1 = new javax.swing.JRadioButton();
+                jRadioButton2 = new javax.swing.JRadioButton();
+                jLabel7 = new javax.swing.JLabel();
+
+                buttonGroup.add(jRadioButton1);
+                buttonGroup.add(jRadioButton2);
+
+                javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+                jPanel1.setLayout(jPanel1Layout);
+                jPanel1Layout.setHorizontalGroup(
+                                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGap(0, 100, Short.MAX_VALUE));
+                jPanel1Layout.setVerticalGroup(
+                                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGap(0, 100, Short.MAX_VALUE));
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-                jTextField1.setToolTipText("Nome");
-                jTextField2.setToolTipText("Idade");
-                jTextField3.setToolTipText("NUIT");
-                jTextField4.setToolTipText("Numero de Telefone");
-                jTextField5.setToolTipText("Email");
-                jTextField6.setToolTipText("Endereco");
 
                 jLabel1.setText("Nome:");
 
@@ -80,17 +91,31 @@ public class RegistarPessoa extends javax.swing.JFrame {
 
                 jLabel5.setText("Email:");
 
-                jLabel6.setText("Endereco");
+                jLabel6.setText("Endereco:");
 
-                jTextField1.setText("NomeTeste");
+                jTextField1.setToolTipText("Nome");
+                jTextField1.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jTextField1ActionPerformed(evt);
+                        }
+                });
 
+                jTextField2.setText("");
+
+                jTextField3.setText("");
+
+                jTextField4.setText("");
                 jTextField4.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jTextField4ActionPerformed(evt);
                         }
                 });
 
-                jLabel8.setText("Registo");
+                jTextField5.setText("");
+
+                jTextField6.setText("");
+
+                jLabel8.setText("");
                 jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
 
                 jButton1.setText("Gravar");
@@ -106,6 +131,12 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                 jButton2ActionPerformed(evt);
                         }
                 });
+
+                jRadioButton1.setText("M");
+
+                jRadioButton2.setText("F");
+
+                jLabel7.setText("Genero:");
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -124,20 +155,8 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                 .addGap(22, 22, 22))
                                                                                 .addGroup(layout.createSequentialGroup()
-                                                                                                .addGroup(layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                .addGap(96, 96, 96)
-                                                                                                                                .addComponent(jLabel3,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                98,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                .addGap(18, 18, 18)
-                                                                                                                                .addComponent(jTextField3,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                164,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                .addGroup(layout.createParallelGroup(
+                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                                 .addGroup(layout.createSequentialGroup()
                                                                                                                                 .addGap(96, 96, 96)
                                                                                                                                 .addGroup(layout.createParallelGroup(
@@ -168,34 +187,62 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                                                                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                                                                 .addGroup(layout.createSequentialGroup()
                                                                                                                                                                 .addGroup(layout.createParallelGroup(
-                                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                                                                                                false)
+                                                                                                                                                                                .addComponent(jLabel4,
+                                                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                                                                Short.MAX_VALUE)
+                                                                                                                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                                                                                                                layout.createSequentialGroup()
+                                                                                                                                                                                                                .addGap(2, 2, 2)
+                                                                                                                                                                                                                .addComponent(jLabel3,
+                                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                                                                                                98,
+                                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                                                                                                                .addGap(18, 18, 18)
+                                                                                                                                                                .addComponent(jTextField3,
+                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                                                164,
+                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                                                                .addGroup(layout.createSequentialGroup()
+                                                                                                                                                                .addGroup(layout.createParallelGroup(
+                                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                                                                                                false)
                                                                                                                                                                                 .addComponent(jLabel6,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                                                                                                                 92,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                                                                                                Short.MAX_VALUE)
                                                                                                                                                                                 .addComponent(jLabel5,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                                                                                                                 92,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                .addComponent(jButton1))
+                                                                                                                                                                                                Short.MAX_VALUE)
+                                                                                                                                                                                .addComponent(jButton1)
+                                                                                                                                                                                .addComponent(jLabel7,
+                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                                                                Short.MAX_VALUE))
                                                                                                                                                                 .addGap(26, 26, 26)
                                                                                                                                                                 .addGroup(layout.createParallelGroup(
-                                                                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                                                                                .addComponent(jTextField5,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                164,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                .addComponent(jButton2)
-                                                                                                                                                                                .addComponent(jTextField6,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                164,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                                                                                .addComponent(jLabel4,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                127,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                                                                .addGap(0, 24, Short.MAX_VALUE)))
-                                                                .addContainerGap(100, Short.MAX_VALUE))
+                                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                                                                                                                .addGroup(layout.createParallelGroup(
+                                                                                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                                                                                                                                .addComponent(jTextField5,
+                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                                                                                164,
+                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                                                                                                .addComponent(jButton2)
+                                                                                                                                                                                                .addComponent(jTextField6,
+                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                                                                                164,
+                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                                                                                                .addGroup(layout.createSequentialGroup()
+                                                                                                                                                                                                .addComponent(jRadioButton1)
+                                                                                                                                                                                                .addGap(18, 18, 18)
+                                                                                                                                                                                                .addComponent(jRadioButton2)))))))
+                                                                                                .addGap(0, 23, Short.MAX_VALUE)))
+                                                                .addContainerGap(101, Short.MAX_VALUE))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
                                                                 .createSequentialGroup()
                                                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -262,13 +309,19 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(48, 48, 48)
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                .addComponent(jRadioButton1)
+                                                                                .addComponent(jRadioButton2)
+                                                                                .addComponent(jLabel7))
+                                                                .addGap(20, 20, 20)
                                                                 .addGroup(layout.createParallelGroup(
                                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jButton1)
                                                                                 .addComponent(jButton2))
                                                                 .addContainerGap(27, Short.MAX_VALUE)));
-                this.setSize(700, 500);
 
                 pack();
         }// </editor-fold>
@@ -279,12 +332,14 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                 || jTextField5.getText().trim().equals("") || jTextField6.getText().trim().equals("")) {
                         JOptionPane.showMessageDialog(this, "Insira todos os dados");
                 } else {
+                        if (PhoneNumberValidator.validate(jTextField4.getText())){
+                                String sexo = jRadioButton1.isSelected() ? "M" : "F";
                         ListaLigada listaLigada = new ListaLigada();
                         File file = new File("ListaLigada.bin");
                         Vector<ListaLigada> vector = new Vector<>();
                         Pessoa pessoa = new Pessoa(jTextField1.getText(), jTextField5.getText(), jTextField4.getText(),
                                         jTextField3.getText(), Integer.parseInt(jTextField2.getText()),
-                                        jTextField6.getText());
+                                        jTextField6.getText(), sexo);
                         try {
                                 if (file.createNewFile()) {
                                         listaLigada.adicionaInicio(pessoa);
@@ -303,8 +358,13 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                 e1.printStackTrace();
                         }
                         ControlaTabela.newTabela(listaLigada);
+                        limpar();
+                        } else {
+                                JOptionPane.showMessageDialog(this, "Numero de telefone invalido");
+                        }
+                        
                 }
-                limpar();
+                
         }
 
         private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,6 +381,10 @@ public class RegistarPessoa extends javax.swing.JFrame {
         }
 
         private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {
+                // TODO add your handling code here:
+        }
+
+        private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
                 // TODO add your handling code here:
         }
 
@@ -346,36 +410,31 @@ public class RegistarPessoa extends javax.swing.JFrame {
                                 }
                         }
                 } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName()).log(
-                                        java.util.logging.Level.SEVERE, null,
-                                        ex);
+                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName())
+                                        .log(java.util.logging.Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName()).log(
-                                        java.util.logging.Level.SEVERE, null,
-                                        ex);
+                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName())
+                                        .log(java.util.logging.Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName()).log(
-                                        java.util.logging.Level.SEVERE, null,
-                                        ex);
+                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName())
+                                        .log(java.util.logging.Level.SEVERE, null, ex);
                 } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName()).log(
-                                        java.util.logging.Level.SEVERE, null,
-                                        ex);
+                        java.util.logging.Logger.getLogger(RegistarPessoa.class.getName())
+                                        .log(java.util.logging.Level.SEVERE, null, ex);
                 }
                 // </editor-fold>
 
                 /* Create and display the form */
                 java.awt.EventQueue.invokeLater(new Runnable() {
                         public void run() {
-                                File file = new File("Pessoas.bin");
-                                Vector<Pessoa> vector = new Vector<>();
-                                ListaLigada listaLigada = new ListaLigada();
-                                new RegistarPessoa(listaLigada).setVisible(true);
+                                new RegistarPessoa().setVisible(true);
                         }
                 });
         }
 
         // Variables declaration - do not modify
+        private ButtonGroup buttonGroup;
+        private javax.swing.ButtonGroup buttonGroup1;
         private javax.swing.JButton jButton1;
         private javax.swing.JButton jButton2;
         private javax.swing.JLabel jLabel1;
@@ -384,7 +443,11 @@ public class RegistarPessoa extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel4;
         private javax.swing.JLabel jLabel5;
         private javax.swing.JLabel jLabel6;
+        private javax.swing.JLabel jLabel7;
         private javax.swing.JLabel jLabel8;
+        private javax.swing.JPanel jPanel1;
+        private javax.swing.JRadioButton jRadioButton1;
+        private javax.swing.JRadioButton jRadioButton2;
         private javax.swing.JTextField jTextField1;
         private javax.swing.JTextField jTextField2;
         private javax.swing.JTextField jTextField3;

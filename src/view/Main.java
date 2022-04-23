@@ -1,12 +1,5 @@
 package view;
 
-import java.io.File;
-import java.util.Vector;
-
-import ListasLigadas.ListaLigada;
-import controller.ControlaListaLigada;
-import controller.ControlaTabela;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -17,15 +10,11 @@ import controller.ControlaTabela;
  * @author claudio
  */
 public class Main extends javax.swing.JFrame {
-    private ListaLigada listaLigada;
-    private String[][] dados;
-
+    
     /**
      * Creates new form Main
      */
-    public Main(ListaLigada listaLigada) {
-        this.listaLigada = listaLigada;
-
+    public Main() {
         initComponents();
     }
 
@@ -102,20 +91,19 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        new RegistarPessoa(listaLigada).setVisible(true);
+        new RegistarPessoa().setVisible(true);
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-
-        new Apagar(listaLigada, ControlaTabela.newTabela(listaLigada)).setVisible(true);
+        new Apagar().setVisible(true);
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-        new Imprimir(listaLigada).setVisible(true);
+        new Imprimir().setVisible(true);
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        new Busca(listaLigada).setVisible(true);
+        new Busca().setVisible(true);
     }
 
     /**
@@ -152,28 +140,7 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListaLigada listaLigada = new ListaLigada();
-                File file = new File("ListaLigada.bin");
-                Vector<ListaLigada> vector = new Vector<>();
-                try {
-                    if (file.createNewFile()) {
-                        vector.add(listaLigada);
-                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
-                    } else {
-                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
-                        listaLigada = vector.firstElement();
-                    }
-                } catch (Exception e) {
-                    // TODO: handle exception
-                }
-                try {
-                    String[][] dados = new String[listaLigada.tamanho()][7];
-                    ControlaTabela.carregarDados(dados, listaLigada);
-                    new Main(listaLigada).setVisible(true);
-                } catch (Exception e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+                new Main().setVisible(true);
             }
         });
     }

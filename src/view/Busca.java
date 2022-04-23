@@ -1,19 +1,11 @@
 package view;
 
-import java.io.File;
-import java.util.Vector;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 import ListasLigadas.ListaLigada;
 import controller.ControlaListaLigada;
 import controller.ControlaTabela;
-import model.Pessoa;
 
 /**
  *
@@ -25,8 +17,8 @@ public class Busca extends javax.swing.JFrame {
     /**
      * Creates new form Busca
      */
-    public Busca(ListaLigada listaLigada) {
-        this.listaLigada = listaLigada;
+    public Busca() {
+        this.listaLigada = ControlaListaLigada.carregarLista();
         this.setSize(700, 500);
         setLocation(-800, 500);
         initComponents();
@@ -40,6 +32,7 @@ public class Busca extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+        setTitle("Buscar");
         buttonGroup = new ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -56,7 +49,7 @@ public class Busca extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         buttonGroup.add(jRadioButton1);
         buttonGroup.add(jRadioButton2);
@@ -294,24 +287,7 @@ public class Busca extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ListaLigada listaLigada = new ListaLigada();
-                File file = new File("ListaLigada.bin");
-                Vector<ListaLigada> vector = new Vector<>();
-                try {
-                    if (file.createNewFile()) {
-                        vector.add(listaLigada);
-                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
-                    } else {
-                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
-                        listaLigada = vector.firstElement();
-                        System.out.println(listaLigada.tamanho());
-                    }
-                } catch (Exception e) {
-                    // TODO: handle exception
-                }
-                String dados[][] = new String[vector.size()][7];
-
-                new Busca(listaLigada).setVisible(true);
+                new Busca().setVisible(true);
             }
         });
     }

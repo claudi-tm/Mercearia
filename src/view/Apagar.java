@@ -25,9 +25,9 @@ public class Apagar extends javax.swing.JFrame {
     /**
      * Creates new form Apagar
      */
-    public Apagar(ListaLigada listaLigada, Tabela tabela) {
-        this.tabela = tabela;
-        this.listaLigada = listaLigada;
+    public Apagar() {
+        this.listaLigada = ControlaListaLigada.carregarLista();
+        this.tabela = ControlaTabela.newTabela(listaLigada);
         try {
             listaLigada.content();
         } catch (Exception e) {
@@ -45,6 +45,7 @@ public class Apagar extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+        setTitle("Apagar");
         setLocation(-800, 500);
         jPanel2 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -57,7 +58,7 @@ public class Apagar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton2.setText("Buscar");
+        jButton2.setText("Apagar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -68,7 +69,7 @@ public class Apagar extends javax.swing.JFrame {
 
         jLabel2.setText("Codigo");
 
-        jButton3.setText("Buscar");
+        jButton3.setText("Apagar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -118,7 +119,7 @@ public class Apagar extends javax.swing.JFrame {
                                         .addComponent(jButton3))
                                 .addContainerGap(136, Short.MAX_VALUE)));
 
-        jLabel3.setText("Eliminar");
+        jLabel3.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -228,10 +229,9 @@ public class Apagar extends javax.swing.JFrame {
                 } catch (Exception e) {
                     // TODO: handle exception
                 }
-                String dados[][] = new String[vector.size()][7];
                 try {
                     // ControlaTabela.carregarDados(dados, listaLigada);
-                    new Apagar(listaLigada, ControlaTabela.newTabela(listaLigada)).setVisible(true);
+                    new Apagar().setVisible(true);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

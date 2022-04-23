@@ -186,7 +186,8 @@ public class ListaLigada implements Serializable {
             vector.add(pessoa);
             no = no.getProximo();
             toPrint.append("\n" + pessoa.toString());
-            if (i != totalElem - 1) toPrint.append("\n====================");
+            if (i != totalElem - 1)
+                toPrint.append("\n====================");
         }
         return toPrint.toString();
     }
@@ -220,12 +221,14 @@ public class ListaLigada implements Serializable {
             No no = (No) pega(x);
             Pessoa pessoa = (Pessoa) no.getElemento();
             if (interseccao) {
-                if (getCriterio(criterio1, pessoa).contains(valor1) && getCriterio(criterio2, pessoa).contains(valor2)) {
+                if (getCriterio(criterio1, pessoa).contains(valor1)
+                        && getCriterio(criterio2, pessoa).contains(valor2)) {
                     arrayList.add(pessoa);
-                    aux.adicionaInicio(pessoa)  ;
+                    aux.adicionaInicio(pessoa);
                 }
             } else {
-                if (getCriterio(criterio1, pessoa).contains(valor1) || getCriterio(criterio2, pessoa).contains(valor2)) {
+                if (getCriterio(criterio1, pessoa).contains(valor1)
+                        || getCriterio(criterio2, pessoa).contains(valor2)) {
                     arrayList.add(pessoa);
                     aux.adicionaInicio(pessoa);
                 }
@@ -242,7 +245,8 @@ public class ListaLigada implements Serializable {
             Pessoa pessoa = (Pessoa) no.getElemento();
             if (getCriterio(criterio1, pessoa).contains(valor1)) {
                 toPress.append("\n" + pessoa.toString());
-                if (x != totalElem) toPress.append("\n================");
+                if (x != totalElem)
+                    toPress.append("\n================");
             }
         }
         return toPress.toString();
@@ -259,12 +263,10 @@ public class ListaLigada implements Serializable {
                 if (getCriterio(criterio1, pessoa).equals(valor1) && getCriterio(criterio2, pessoa).equals(valor2)) {
                     return pessoa;
                 }
-            } 
             }
-        return null;
         }
-        
-    
+        return null;
+    }
 
     public String bubbleSort(String criterio, ListaLigada listaLigada) throws Exception {
         No atual, anterior, proximo;
@@ -291,8 +293,8 @@ public class ListaLigada implements Serializable {
                         atual.setProximo(proximo.getProximo());
                     }
                     proximo.setProximo(atual);
-                    //System.out.println("---------------------------" + atual);
-                   
+                    // System.out.println("---------------------------" + atual);
+
                 }
 
             }
@@ -326,16 +328,17 @@ public class ListaLigada implements Serializable {
         if (!endereco.trim().equals(p.getEndereco())) {
             p.setEndereco(endereco);
         }
-        if (!nuit.trim().equals(p.getNUIT())) {
-            p.setNuit(nuit);
+        if (!nuit.trim().equals(p.getnuit())) {
+            p.setnuit(nuit);
         }
 
-        for (int x = 0; x < totalElem; x++){
+        for (int x = 0; x < totalElem; x++) {
             No no = (No) pega(x);
             Pessoa pessoa = (Pessoa) no.getElemento();
-            if (pessoa.getId().equals(p.getId())) no.setElemento(p);
+            if (pessoa.getId().equals(p.getId()))
+                no.setElemento(p);
         }
-        
+
     }
 
     // devolve o numero de elementos da listapublic void adicionaInicio(Object

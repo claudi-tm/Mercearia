@@ -3,7 +3,7 @@ import model.Pessoa;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Pessoa p1 = new Pessoa("Claudio", "cc", "822512163", "131414", 10, "Maputo");
+        /*Pessoa p1 = new Pessoa("Claudio", "cc", "822512163", "131414", 10, "Maputo");
         Pessoa p2 = new Pessoa("Ana", "cA", "822512163", "131414", 30, "Tete");
         Pessoa p3 = new Pessoa("Ze", "cB", "822512163", "131414", 20, "Nampula");
 
@@ -22,6 +22,6 @@ public class App {
         
         listaLigada.content();
         System.out.println("--------ORDENACAO---------");
-        listaLigada.bubbleSort("nome", listaLigada);
+        listaLigada.bubbleSort("nome", listaLigada);*/
     }
 }
