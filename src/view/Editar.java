@@ -291,16 +291,8 @@ public class Editar extends javax.swing.JFrame {
                         ListaLigada listaLigada = new ListaLigada();
                         File file = new File("ListaLigada.bin");
                         Vector<ListaLigada> vector = new Vector<>();
-                        Pessoa pessoa = new Pessoa(jTextField1.getText(), jTextField5.getText(), jTextField4.getText(),
-                                        jTextField3.getText(), Integer.parseInt(jTextField2.getText()),
-                                        jTextField6.getText());
+                        Pessoa pessoa = this.pessoa;
                         try {
-                                if (file.createNewFile()) {
-                                        listaLigada.adicionaInicio(pessoa);
-                                        vector.add(listaLigada);
-                                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
-
-                                } else {
                                         vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
                                         listaLigada = vector.firstElement();
                                         /*
@@ -318,10 +310,12 @@ public class Editar extends javax.swing.JFrame {
                                          */
                                         listaLigada.editarPessoa(pessoa, jTextField1.getText(), jTextField2.getText(),
                                                         jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jTextField3.getText());
+                                        System.out.println("-----------AFTER EDITING------------");
                                         listaLigada.content();
                                         vector.insertElementAt(listaLigada, 0);
                                         ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
-                                }
+                                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
+                                        listaLigada = vector.firstElement();
                         } catch (Exception e1) {
                                 // TODO Auto-generated catch block
                                 e1.printStackTrace();

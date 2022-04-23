@@ -252,10 +252,6 @@ public class Busca extends javax.swing.JFrame {
         if (buttonGroup.getSelection() == null) {
             JOptionPane.showMessageDialog(this, "Selecione uma das opcoes");
         } else {
-            System.out.println(listaLigada
-                    .buscaPrimeiraOcorrencia(jComboBox2.getSelectedItem().toString(), jTextField2.getText(),
-                            jComboBox3.getSelectedItem().toString(), jTextField3.getText(), jRadioButton2.isSelected())
-                    .toString());
             new Editar(
                     listaLigada.buscaPrimeiraOcorrencia(jComboBox2.getSelectedItem().toString(), jTextField2.getText(),
                             jComboBox3.getSelectedItem().toString(), jTextField3.getText(), jRadioButton2.isSelected()))

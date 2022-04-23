@@ -25,7 +25,7 @@ public class Apagar extends javax.swing.JFrame {
     /**
      * Creates new form Apagar
      */
-    public Apagar(ListaLigada listaLigada, String[][] dados, Tabela tabela) {
+    public Apagar(ListaLigada listaLigada, Tabela tabela) {
         this.tabela = tabela;
         this.listaLigada = listaLigada;
         try {
@@ -55,7 +55,7 @@ public class Apagar extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -224,7 +224,6 @@ public class Apagar extends javax.swing.JFrame {
                     } else {
                         vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
                         listaLigada = vector.firstElement();
-                        System.out.println(listaLigada.tamanho());
                     }
                 } catch (Exception e) {
                     // TODO: handle exception
@@ -232,7 +231,7 @@ public class Apagar extends javax.swing.JFrame {
                 String dados[][] = new String[vector.size()][7];
                 try {
                     // ControlaTabela.carregarDados(dados, listaLigada);
-                    new Apagar(listaLigada, dados, ControlaTabela.newTabela(listaLigada)).setVisible(true);
+                    new Apagar(listaLigada, ControlaTabela.newTabela(listaLigada)).setVisible(true);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

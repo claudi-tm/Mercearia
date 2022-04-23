@@ -44,7 +44,7 @@ public class Tabela extends JFrame {
         labelvazio = new JLabel();
         this.setSize(700, 380);
         setLocation(800, 500);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(true);
         setLayout(new BorderLayout());
         this.setResizable(false);
@@ -126,7 +126,7 @@ public class Tabela extends JFrame {
                 listaLigada = vector.firstElement();
             }
             String[][] dados = new String[listaLigada.tamanho()][7];
-            ControlaTabela.carregarDados(dados, listaLigada);
+            //ControlaTabela.carregarDados(dados, listaLigada);
             ControlaTabela.newTabela(listaLigada);
         } catch (Exception e) {
             e.printStackTrace();
