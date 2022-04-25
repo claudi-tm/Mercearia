@@ -90,20 +90,150 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    public void newImprimir(){
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Imprimir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Imprimir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Imprimir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Imprimir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        // </editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new Imprimir().setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void newBuscar(){
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Busca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Busca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Busca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Busca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        // </editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Busca().setVisible(true);
+            }
+        });
+    }
+
+    public void newApagar(){
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Apagar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Apagar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Apagar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Apagar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        // </editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    // ControlaTabela.carregarDados(dados, listaLigada);
+                    new Apagar().setVisible(true);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void newRegistar(){
+        /*
+                 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+                 * look and feel.
+                 * For details see
+                 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+                 */
+                try {
+                    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                                    .getInstalledLookAndFeels()) {
+                            if ("Nimbus".equals(info.getName())) {
+                                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                                    break;
+                            }
+                    }
+            } catch (ClassNotFoundException ex) {
+                    java.util.logging.Logger.getLogger(RegistarPessoa.class.getName())
+                                    .log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                    java.util.logging.Logger.getLogger(RegistarPessoa.class.getName())
+                                    .log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                    java.util.logging.Logger.getLogger(RegistarPessoa.class.getName())
+                                    .log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                    java.util.logging.Logger.getLogger(RegistarPessoa.class.getName())
+                                    .log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            // </editor-fold>
+
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                            new RegistarPessoa().setVisible(true);
+                    }
+            });
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        new RegistarPessoa().setVisible(true);
+        newRegistar();
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        new Apagar().setVisible(true);
+        newApagar();
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-        new Imprimir().setVisible(true);
+        newImprimir();
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        new Busca().setVisible(true);
+        newBuscar();
     }
 
     /**

@@ -193,23 +193,8 @@ public class Imprimir extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                File file = new File("ListaLigada.bin");
-                Vector<ListaLigada> vector = new Vector<>();
                 try {
-                    ListaLigada listaLigada = new ListaLigada();
-                    if (file.createNewFile()) {
-                        vector.add(listaLigada);
-                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
-
-                    } else {
-                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
-                        System.out.println(vector.size());
-                        listaLigada = vector.firstElement();
-                    }
-                    String[][] dados = new String[listaLigada.tamanho()][8];
-                    ControlaTabela.carregarDados(dados, listaLigada);
                     new Imprimir().setVisible(true);
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

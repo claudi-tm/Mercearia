@@ -215,20 +215,6 @@ public class Apagar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListaLigada listaLigada = new ListaLigada();
-                File file = new File("ListaLigada.bin");
-                Vector<ListaLigada> vector = new Vector<>();
-                try {
-                    if (file.createNewFile()) {
-                        vector.add(listaLigada);
-                        ControlaListaLigada.escreverFicherio("ListaLigada.bin", vector);
-                    } else {
-                        vector = ControlaListaLigada.lerFicheiro("ListaLigada.bin");
-                        listaLigada = vector.firstElement();
-                    }
-                } catch (Exception e) {
-                    // TODO: handle exception
-                }
                 try {
                     // ControlaTabela.carregarDados(dados, listaLigada);
                     new Apagar().setVisible(true);

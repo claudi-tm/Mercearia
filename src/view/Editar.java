@@ -384,7 +384,7 @@ public class Editar extends javax.swing.JFrame {
                                 File file = new File("Pessoas.bin");
                                 Vector<Pessoa> vector = new Vector<>();
 
-                                // new Editar(listaLigada).setVisible(true);
+                                //new Editar(listaLigada).setVisible(true);
                         }
                 });
         }
